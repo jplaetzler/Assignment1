@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		body{ background-color:#1D2D44; }
+		#header{ width:auto; background-color:#78A1BB; font-size:200%; color:#EFF7FF; padding:15px 25px; text-align: left; }
+		#main_content{ width:auto; background-color:#474973; font-size:24px; color:#BFCDE0; margin:8px; padding:15px 25px; 
+		}
+		.input{background-color:#78A1BB; border: none; color:#EFF7FF; padding: 15px px20; font-size: 24px; text-align: right;}
+		.button{background-color:#78A1BB; border: none; color: #EFF7FF; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;} 
+		#results{text-align: center}
+		.car{padding-left: 50px; width:80px; height:50px; }
+	</style>
+<script type="text/javascript">
+function calculateInsurance()
+{
+	var vehicleCost = 0;
+	var safeDriver;
+	var insuranceCost = 0;
+
+	//Set vehicle cost to the Value entered
+	vehicleCost = parseFloat(document.getElementById('txtValue').value);
+	//set safeDrive to value selected
+	safeDriver = document.getElementById('selSafeDriver').value;
+	
+	//calculate insurance cost depending on the selection of how safe of driver.
+	if (safeDriver=="verSafe"){
+		insuranceCost = vehicleCost*0.01;
+	}
+	else if (safeDriver=="resSafe"){
+		insuranceCost = vehicleCost*0.02;
+	}
+	else if (safeDriver=="notSafe"){
+		insuranceCost = vehicleCost*0.04;
+	}
+	
+	//round the insurance cost to 2 
+	insuranceCost = Math.round(insuranceCost);
+
+	var resultsString = "Your Insurance Cost is $" + insuranceCost;
+	document.getElementById('results').innerHTML = resultsString;
+
+}
+</script>	
+</head>
+<body>
+<div id ="header">
+	Insurance Calculator
+	<img src="car.png" alt="Mountain View" class = "car">
+</div>
+<div id="main_content">
+	<form id="driverInfo">
+		<p>What is the value of your Vehicle?
+			<input type="number" class="input" id="txtValue">
+		</p>
+		<p>Are you a Safe Driver?
+			<select id="selSafeDriver" class="input">
+				<option value="verSafe">Very safe</option>
+				<option value="resSafe">Reasonably safe</option>
+				<option value="notSafe">Not safe at all</option>
+			</select>
+		</p>
+			<input type="button" class="button" value="Calculate Cost" onclick ="calculateInsurance()">
+	</form>
+
+	<div id="results">
+	</div>
+</div>
+</body>
+</html>
